@@ -1,1 +1,0 @@
-# forensic_image_generator
