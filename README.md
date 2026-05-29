@@ -94,7 +94,6 @@ Generated Forensic Portrait
 </td>
 </tr>
 </table>
----
 
 ## Streamlit Application
 
