@@ -65,25 +65,35 @@ Generated Forensic Portrait
 
 ---
 
-## Sample Results
+### Sample Results
+
+<table>
+<tr>
+<td align="center" width="50%">
 
 ### Example 1 — Surveillance Style Reconstruction
 
 **Input Prompt**
 
-> A grainy surveillance-style photo of a young female with short dark straight black hair, pale complexion, neutral serious expression, minimal makeup, captured in an outdoor setting, for forensic facial reconstruction.
+*A grainy surveillance-style photo of a young female with short dark straight black hair, pale complexion, neutral serious expression, minimal makeup, captured in an outdoor setting, for forensic facial reconstruction.*
 
-![Example 1](assets/generated_forensic_prompt_6_seed_1200_0.png)
+<img src="assets/generated_forensic_prompt_6_seed_1200_0.png" width="400">
+
+</td>
+
+<td align="center" width="50%">
 
 ### Example 2 — Criminal Database Style Reconstruction
 
 **Input Prompt**
 
-> A detailed forensic image of a young attractive female with long straight brown hair, high cheekbones, oval face, wearing earrings and a necklace, heavy makeup and an intense gaze, as seen in a criminal database.
+*A detailed forensic image of a young attractive female with long straight brown hair, high cheekbones, oval face, wearing earrings and a necklace, heavy makeup and an intense gaze, as seen in a criminal database.*
 
+<img src="assets/generated_forensic_prompt_6_seed_1234_0.png" width="400">
 
-![Example 2](assets/generated_forensic_prompt_6_seed_1234_0.png)
-
+</td>
+</tr>
+</table>
 ---
 
 ## Streamlit Application
