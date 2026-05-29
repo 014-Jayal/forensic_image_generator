@@ -101,8 +101,6 @@ Features:
 - Real-time image rendering
 - Easy experimentation and testing
 
-```
-```
 
 ---
 
