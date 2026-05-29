@@ -73,9 +73,7 @@ Generated Forensic Portrait
 
 > A grainy surveillance-style photo of a young female with short dark straight black hair, pale complexion, neutral serious expression, minimal makeup, captured in an outdoor setting, for forensic facial reconstruction.
 
-```markdown
 ![Example 1](assets/generated_forensic_prompt_6_seed_1200_0.png)
-```
 
 ### Example 2 — Criminal Database Style Reconstruction
 
@@ -83,9 +81,8 @@ Generated Forensic Portrait
 
 > A detailed forensic image of a young attractive female with long straight brown hair, high cheekbones, oval face, wearing earrings and a necklace, heavy makeup and an intense gaze, as seen in a criminal database.
 
-```markdown
+
 ![Example 2](assets/generated_forensic_prompt_6_seed_1234_0.png)
-```
 
 ---
 
