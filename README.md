@@ -101,8 +101,7 @@ Features:
 - Real-time image rendering
 - Easy experimentation and testing
 
-```markdown
-assets/streamlit_app.png
+```
 ```
 
 ---
