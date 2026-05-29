@@ -1,133 +1,362 @@
-# 🕵️ Forensic Image Generator
+# 🕵️ Forensic Image Generator using Stable Diffusion + LoRA
 
-An advanced **AI-powered text-to-image generator** that uses fine-tuned **Stable Diffusion** to create forensic-style portraits based on detailed descriptions.
+<p align="center">
+  <b>BISAG-N Summer Internship Project</b><br>
+  AI-Powered Forensic Facial Reconstruction from Textual Descriptions
+</p>
 
-This project explores the application of generative AI in **forensic science and law enforcement**, providing a tool to visualize descriptions of individuals with high accuracy and detail.
-
----
-
-## 🚀 Key Features
-- **LoRA Fine-Tuning**: Efficiently trains a Stable Diffusion model using **Low-Rank Adaptation (LoRA)** on a custom dataset, preserving the base model's capabilities while specializing it for a forensic style.
-- **Custom Token Conditioning**: Uses a dedicated token `<forensic_details>` to activate the model's knowledge of forensic image generation.
-- **Streamlit Web App**: A user-friendly graphical interface for real-time image generation and parameter tuning.
-- **Command-Line Inference**: A powerful script for generating multiple images from a predefined list of prompts, ideal for batch processing or testing.
-- **Reproducible Environment**: Includes a `requirements.txt` file and clear instructions to set up the project locally or on cloud platforms like Google Colab.
-
----
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- **Python 3.10+**
-- **NVIDIA GPU** with at least **8GB of VRAM** (12GB+ recommended for optimal performance).
-- **Hugging Face account & access token**
+<p align="center">
+  <img src="https://img.shields.io/badge/PyTorch-Deep%20Learning-red?logo=pytorch">
+  <img src="https://img.shields.io/badge/Stable%20Diffusion-v1.5-blue">
+  <img src="https://img.shields.io/badge/LoRA-Fine%20Tuning-green">
+  <img src="https://img.shields.io/badge/HuggingFace-Diffusers-yellow">
+  <img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit">
+  <img src="https://img.shields.io/badge/Domain-Forensic%20AI-orange">
+  <img src="https://img.shields.io/badge/Status-Completed-success">
+</p>
 
 ---
 
-## Installation
+## Overview
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/014-Jayal/forensic_image_generator.git
-cd forensic_image_generator
-```
+This project presents a specialized forensic image generation system built using Stable Diffusion and Low-Rank Adaptation (LoRA). The system transforms detailed textual descriptions into realistic forensic-style facial images, helping bridge the gap between eyewitness descriptions and visual reconstruction.
 
-### 2. Set up a Python Virtual Environment
-```bash
-python -m venv .venv
-# Activate the environment
-# On Windows: .\.venv\Scriptsctivate
-# On macOS/Linux: source ./.venv/bin/activate
-```
-
-### 3. Install PyTorch with CUDA support
-Consult the official PyTorch installation page for the correct command. Example for CUDA 11.8:
-```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-### 4. Install Project Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Hugging Face Login
-```bash
-huggingface-cli login
-```
-Paste your token when prompted.
+Traditional sketch-based reconstruction methods are often time-consuming and highly dependent on artistic expertise. This work explores how modern Generative AI can accelerate forensic visualization through domain-adapted diffusion models.
 
 ---
 
-## Dataset Preparation
-Create the following directories inside the `data` folder:
+## Key Features
+
+- Stable Diffusion based forensic image generation
+- Parameter-efficient LoRA fine-tuning
+- Custom forensic token conditioning
+- Streamlit-based graphical user interface
+- Batch image generation support
+- Mixed precision FP16 training
+- SafeTensors model serialization
+- Reproducible inference with fixed seeds
+- Research-focused implementation for forensic applications
+
+---
+
+## System Architecture
+
+```text
+Text Description
+        │
+        ▼
+Prompt Processing
+        │
+        ▼
+Tokenizer + Text Encoder
+        │
+        ▼
+Stable Diffusion Pipeline
+        │
+        ▼
+LoRA Adaptation Layer
+        │
+        ▼
+Latent Denoising Process
+        │
+        ▼
+Generated Forensic Portrait
+```
+
+Place architecture diagram:
+
+```markdown
+assets/architecture.png
+```
+
+---
+
+## Sample Results
+
+### Example 1 — Surveillance Style Reconstruction
+
+**Input Prompt**
+
+> A grainy surveillance-style photo of a young female with short dark straight black hair, pale complexion, neutral serious expression, minimal makeup, captured in an outdoor setting, for forensic facial reconstruction.
+
+```markdown
+assets/result_1.png
+```
+
+### Example 2 — Criminal Database Style Reconstruction
+
+**Input Prompt**
+
+> A detailed forensic image of a young attractive female with long straight brown hair, high cheekbones, oval face, wearing earrings and a necklace, heavy makeup and an intense gaze, as seen in a criminal database.
+
+```markdown
+assets/result_2.png
+```
+
+---
+
+## Streamlit Application
+
+The project includes a user-friendly Streamlit interface that allows investigators and researchers to generate forensic portraits without interacting directly with model code.
+
+Features:
+
+- Prompt-based image generation
+- Adjustable inference steps
+- Random seed control
+- Real-time image rendering
+- Easy experimentation and testing
+
+```markdown
+assets/streamlit_app.png
+```
+
+---
+
+## Model Pipeline
+
+### Training Workflow
+
+1. Collect forensic-style image dataset
+2. Create descriptive image captions
+3. Prepare image-caption pairs
+4. Load Stable Diffusion base model
+5. Add custom forensic token
+6. Apply LoRA adapters to UNet
+7. Fine-tune on forensic dataset
+8. Save LoRA weights in SafeTensors format
+
+### Inference Workflow
+
+1. User enters forensic description
+2. Prompt is tokenized
+3. Stable Diffusion generates latent representation
+4. LoRA weights inject forensic features
+5. Denoising reconstructs image
+6. Final forensic portrait is produced
+
+---
+
+## Dataset
+
+The model was trained on a curated forensic-style facial image dataset containing multiple facial characteristics and visual conditions.
+
+Dataset Characteristics:
+
+- Male and Female Subjects
+- Different Hairstyles
+- Various Facial Structures
+- Surveillance-Style Images
+- Criminal Database Portraits
+- Different Accessories
+- Multiple Expressions
+- Controlled Facial Descriptions
+
+Dataset Structure:
+
 ```text
 data/
 ├── images/
 └── captions.csv
 ```
 
-- Place your training images (`.jpg` or `.png`) inside the `data/images` folder.
-- Create a `captions.csv` file with two columns: **filename** and **caption**.
+Example Caption:
 
-Example:
 ```csv
 filename,caption
-person1.jpg,<forensic_details> A middle-aged man with short brown hair and glasses
-person2.png,<forensic_details> A young woman with long black hair and sharp jawline
+person1.jpg,<forensic_details> Young female with short black hair and pale complexion
 ```
 
 ---
 
-## 💻 Usage
+## Training Configuration
 
-### 1. Fine-Tuning the Model
-After setting up your dataset, run the training script to fine-tune the model with a LoRA adapter:
+| Parameter | Value |
+|------------|---------|
+| Base Model | Stable Diffusion v1.5 |
+| Fine-Tuning Method | LoRA |
+| Framework | Hugging Face Diffusers |
+| Optimizer | AdamW |
+| Precision | FP16 |
+| Resolution | 512×512 |
+| Training Type | Supervised Fine-Tuning |
+| Output Format | SafeTensors |
+
+---
+
+## Project Structure
+
+```text
+forensic_image_generator/
+│
+├── assets/
+│   ├── banner.png
+│   ├── architecture.png
+│   ├── streamlit_app.png
+│   ├── result_1.png
+│   └── result_2.png
+│
+├── data/
+│   ├── images/
+│   └── captions.csv
+│
+├── generated_images/
+├── output_lora_model/
+│
+├── app.py
+├── train_lora.py
+├── generate_images.py
+├── run_model.py
+├── requirements.txt
+│
+├── docs/
+│   ├── Internship_Report.pdf
+│   └── Presentation.pdf
+│
+└── README.md
+```
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/014-Jayal/forensic_image_generator.git
+cd forensic_image_generator
+```
+
+### Create Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Hugging Face Login
+
+```bash
+huggingface-cli login
+```
+
+---
+
+## Training
+
 ```bash
 python train_lora.py
 ```
-This will create the `output_lora_model/` folder with the trained weights.
 
-### 2. Generating Images
+Generated checkpoints will be stored inside:
 
-#### a) Using the Streamlit App
-For an interactive experience:
+```text
+output_lora_model/
+```
+
+---
+
+## Inference
+
+### Streamlit Application
+
 ```bash
 streamlit run app.py
 ```
-This will start a local web server accessible in your browser (default: http://localhost:8501).
 
-#### b) Using the Command Line
-To generate images in batch from a predefined list of prompts:
+### Command Line
+
 ```bash
 python generate_images.py
 ```
 
 ---
 
-## 📄 File Descriptions
-- **train_lora.py** → The core training script. It loads the base model, adds a custom token, fine-tunes the UNet with LoRA, and saves checkpoints and final weights.
-- **generate_images.py** → The inference script for generating images from a list of prompts. It loads the base model and applies the LoRA weights.
-- **app.py** → The Streamlit web application providing a graphical user interface for real-time image generation.
-- **requirements.txt** → Lists all Python libraries needed for the project.
-- **data/** → Directory for storing the training dataset and captions.
-- **output_lora_model/** → Directory where the fine-tuned model checkpoints and final LoRA weights are saved. (**Not included in the repository**)
-- **generated_images/** → Directory where the output images from inference are stored. (**Not included in the repository**)
+## Research Contributions
+
+This work explores the adaptation of diffusion-based foundation models for forensic applications.
+
+Research Areas:
+
+- Generative AI
+- Computer Vision
+- Diffusion Models
+- Forensic Reconstruction
+- Facial Attribute Conditioning
+- Parameter Efficient Fine-Tuning
+- Human-Centered AI
 
 ---
 
-## 🤝 Contribution
-Feel free to **open issues** or **submit pull requests**. All contributions are welcome!
+## Limitations
+
+- Dependent on GPU acceleration
+- Performance influenced by dataset quality
+- Generated outputs are probabilistic
+- Not intended for direct legal identification
 
 ---
 
-## 👨‍💻 Authors
-- **014-Jayal** – [GitHub](https://github.com/014-Jayal) | [LinkedIn](https://www.linkedin.com/in/jayal-shah04/)
-- **Niheel Prajapati** – [GitHub](https://github.com/) | [LinkedIn](https://www.linkedin.com/in/niheel-prajapati/)
+## Future Enhancements
+
+- ControlNet Integration
+- Sketch-to-Face Generation
+- Age Progression and Regression
+- Identity Preservation
+- Multi-Person Reconstruction
+- Face Verification Integration
+- Diffusion Transformer Models
+- Real-Time Deployment
 
 ---
 
-## ⚠️ Disclaimer
-This project is for **educational and research purposes**.  
-The generated images are **AI-generated** and should not be used as factual representations.  
-All original models and code are used under their respective licenses.
+## Authors
+
+### Jayal Shah
+AI Engineer | Generative AI | Computer Vision
+
+- GitHub: https://github.com/014-Jayal
+- LinkedIn: https://www.linkedin.com/in/jayal-shah04/
+
+### Niheel Prajapati
+
+Project Collaborator
+
+---
+
+## Acknowledgements
+
+Developed during the Summer Internship Program at:
+
+**Bhaskaracharya National Institute for Space Applications and Geo-Informatics (BISAG-N)**
+
+Guided By:
+
+- Dr. Manoj Pandya (External Guide)
+- Ms. Zalak Thakker (Internal Guide)
+
+---
+
+## Citation
+
+```bibtex
+@misc{forensic_generator_2025,
+  title={Forensic Image Generator using Stable Diffusion and LoRA},
+  author={Jayal Shah and Niheel Prajapati},
+  year={2025},
+  institution={BISAG-N}
+}
+```
+
+---
+
+## Disclaimer
+
+This project is intended for educational and research purposes only.
+
+The generated images are AI-generated visual approximations and should not be considered factual identifications. Any use in forensic workflows should involve qualified human oversight and additional corroborating evidence.
