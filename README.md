@@ -63,12 +63,6 @@ Latent Denoising Process
 Generated Forensic Portrait
 ```
 
-Place architecture diagram:
-
-```markdown
-assets/architecture.png
-```
-
 ---
 
 ## Sample Results
