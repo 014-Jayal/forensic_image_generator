@@ -1,4 +1,4 @@
-# Forensic Image Generator using Stable Diffusion + LoRA
+<h1 align="center"> Forensic Image Generator using Stable Diffusion + LoRA</h1>
 
 <p align="center">
   <b>BISAG-N Summer Internship Project</b><br>
