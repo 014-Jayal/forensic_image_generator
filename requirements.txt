@@ -9,3 +9,6 @@ bitsandbytes
 pandas
 matplotlib # For displaying images during inference
 huggingface_hub
+
+
+#additional files based on the device replicating the repo
